@@ -13,6 +13,7 @@ pub enum QVariantList {}
 pub enum QrsVariantType {
     Invalid = 0,
     Int64,
+    Bool,
     String
 }
 
@@ -23,6 +24,7 @@ extern "C" {
     pub fn qmlrs_create_engine_headless() -> *mut QrsEngine;
     pub fn qmlrs_destroy_engine(engine: *mut QrsEngine);
     pub fn qmlrs_engine_load_url(engine: *mut QrsEngine, path: *const c_char, len: c_uint);
+    pub fn qmlrs_engine_load_from_data(engine: *mut QrsEngine, data: *const c_char, len: c_uint);
     pub fn qmlrs_engine_invoke(engine: *mut QrsEngine, method: *const c_char, result: *mut QVariant,
                                args: *const QVariantList);
     pub fn qmlrs_engine_set_property(engine: *mut QrsEngine, name: *const c_char, len: c_uint,
@@ -31,10 +33,12 @@ extern "C" {
     pub fn qmlrs_variant_create() -> *mut QVariant;
     pub fn qmlrs_variant_destroy(v: *mut QVariant);
     pub fn qmlrs_variant_set_int64(var: *mut QVariant, x: i64);
+    pub fn qmlrs_variant_set_bool(var: *mut QVariant, x: bool);
     pub fn qmlrs_variant_set_invalid(var: *mut QVariant);
     pub fn qmlrs_variant_set_string(var: *mut QVariant, len: c_uint, data: *const c_char);
     pub fn qmlrs_variant_get_type(var: *const QVariant) -> QrsVariantType;
     pub fn qmlrs_variant_get_int64(var: *const QVariant, x: *mut i64);
+    pub fn qmlrs_variant_get_bool(var: *const QVariant, x: *mut bool);
     pub fn qmlrs_variant_get_string_length(var: *const QVariant, out: *mut c_uint);
     pub fn qmlrs_variant_get_string_data(var: *const QVariant, out: *mut c_char);
 

@@ -1,14 +1,18 @@
 [package]
-
 name = "qmlrs"
-version = "0.0.1"
+version = "0.1.0"
 authors = ["Mikko Perttunen <cyndis@kapsi.fi>"]
+
+description = "qmlrs - QtQuick bindings for Rust"
+keywords = ["QML", "QtQuick", "Qt", "GUI"]
 license = "MIT/Apache-2.0"
+repository = "https://github.com/cyndis/qmlrs"
+readme = "README.md"
 
 build = "build.rs"
 
 [dependencies]
-libc = "*"
+libc = "^0.2.6"
 
-[build-dependencies.pkg-config]
-git = "https://github.com/alexcrichton/pkg-config-rs"
+[build-dependencies]
+pkg-config = "^0.3.6"
